@@ -22,6 +22,7 @@ long long solution(int n, vector<int> works) {
         while (i + 1 < works.size() && works[i] == works[i + 1])
             ++i;
         while (i != -1 && n) {
+            if (!works[i] && !i) return 0;
             if (works[i]) --works[i];
             --n;
             --i;

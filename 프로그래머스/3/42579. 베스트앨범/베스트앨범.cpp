@@ -19,7 +19,6 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
     for (auto it = genres_map.begin(); it != genres_map.end(); ++it) {
         sorted_g[it->second.second] = it->second.first;
     }
-    genres_map.clear();
 //  reverse_iterator 를 통해 play 합계 내림차순으로 2곡 선별
     for (auto it = sorted_g.rbegin(); sorted_g.size() && it != sorted_g.rend(); ++it) {
         auto tmp = max_element(it->second.begin(), it->second.end(), // 1st song

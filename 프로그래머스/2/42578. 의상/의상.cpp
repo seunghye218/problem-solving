@@ -1,13 +1,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <numeric>
-
 using namespace std;
-
-inline int factorial(int n) {
-    return n < 2 ? 1 : n * factorial(n-1);
-}
 
 int solution(vector<vector<string>> clothes) {
     int answer = 1;

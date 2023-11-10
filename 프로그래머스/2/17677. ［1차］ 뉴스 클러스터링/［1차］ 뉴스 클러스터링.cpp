@@ -32,7 +32,5 @@ int solution(string str1, string str2) {
         s_product_set += min(s1[*it], s2[*it]);
         s_union += max(s1[*it], s2[*it]);
     }
-    if (s_set.size())
-        return (int)(65536.0 * s_product_set / s_union);
-    return 65536;
+    return s_set.size() ? (int)(65536.0 * s_product_set / s_union) : 65536;
 }

@@ -1,13 +1,10 @@
-#include <vector>
-using namespace std;
-
 int solution(int num) {
-    int answer = 0;
     long long n = num;
+    num = 0;
     while (n != 1) {
         if (n & 1 == 1) n = n * 3 + 1;
         else n >>= 1;
-        ++answer;
+        ++num;
     }
-    return answer > 500 ? -1 : answer;
+    return num > 500 ? -1 : num;
 }

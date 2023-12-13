@@ -10,9 +10,8 @@ using namespace std;
 int cul_fee(vector<int> &fees, int time) {
     int fee = fees[1];
     if (time > fees[0]) {
-        int plus = time - fees[0];
-        fee += plus / fees[2]  * fees[3];
-        fee += plus % fees[2] ? fees[3] : 0;
+        fee += fees[3];
+        fee += (time - fees[0] - 1) / fees[2]  * fees[3];
     }
     return fee;
 }

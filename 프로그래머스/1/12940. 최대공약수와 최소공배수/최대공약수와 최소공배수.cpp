@@ -2,7 +2,7 @@
 using namespace std;
 
 int gcd(int x, int y) {
-    return y == 0 ? x : gcd(y, x % y);
+    return y ? gcd(y, x % y) : x;
 }
 
 vector<int> solution(int n, int m) {

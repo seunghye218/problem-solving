@@ -1,37 +1,20 @@
-#include <string>
-#include <vector>
+#include <regex>
 using namespace std;
 
+inline void replace(string &s, char *src, char *dst) {
+    s = regex_replace(s, regex(src), dst);
+}
+
 int solution(string s) {
-    int answer = 0;
-    for (int i = 0; i < s.size();) {
-        int n;
-        switch (s[i]) {
-            case 'e' : n = 8, i += 5; break;
-            case 'f' :
-                if (s[i+1] == 'o')
-                    n = 4, i += 4;
-                else
-                    n = 5, i += 4;
-                break;
-            case 'n' : n = 9, i += 4; break;
-            case 'o': n = 1, i += 3; break;
-            case 's':
-                if (s[i + 1] == 'i')
-                    n = 6, i += 3;
-                else
-                    n = 7, i += 5;
-                break;
-            case 't':
-                if (s[i + 1] == 'w')
-                    n = 2, i += 3;
-                else
-                    n = 3, i += 5;
-                break;
-            case 'z': n = 0, i += 4; break;
-            default : n = s[i] - '0', ++i;
-        }
-        answer = answer * 10 + n;
-    }
-    return answer;
+    replace(s, "zero", "0");
+    replace(s, "one", "1");
+    replace(s, "two", "2");
+    replace(s, "three", "3");
+    replace(s, "four", "4");
+    replace(s, "five", "5");
+    replace(s, "six", "6");
+    replace(s, "seven", "7");
+    replace(s, "eight", "8");
+    replace(s, "nine", "9");    
+    return stoi(s);
 }

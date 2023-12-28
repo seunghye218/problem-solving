@@ -4,38 +4,26 @@
 #include <cctype>
 using namespace std;
 
-struct part {
-    int i;
-    string head;
-    int num;
-};
+inline string get_head(string str) {
+    auto it = str.begin();
+    for (; it != str.end() && !isdigit(*it); ++it)
+        if (isalpha(*it)) 
+            *it = toupper(*it);
+    return string(str.begin(), it);
+}
 
-inline pair<string, int> get_head_num(string str) {
-    int i = 0;
-    for (; i < str.size() && !isdigit(str[i]); ++i)
-        if (isalpha(str[i])) str[i] = toupper(str[i]);
-    return {string(str.begin(), str.begin() + i), 
-            stoi(string(str.begin() + i, str.end()))};
+inline int get_num(string str) {
+    auto it = str.begin();
+    for (; it != str.end() && !isdigit(*it); ++it);
+    return stoi(string(it, str.end()));
 }
 
 vector<string> solution(vector<string> files) {
-    vector<part> vp;
-    // parsing
-    for (int i = 0; i < files.size(); ++i) {
-        pair<string, int> p = get_head_num(files[i]);
-        vp.push_back({i, p.first, p.second});
-    }
-    // sort
-    sort(vp.begin(), vp.end(), [](part &p1, part &p2) {
-        if (p1.head != p2.head)
-            return p1.head < p2.head;
-        if (p1.num != p2.num)
-            return p1.num < p2.num;
-        return p1.i < p2.i;
+    stable_sort(files.begin(), files.end(), [](auto &s1, auto &s2) {
+        string h1 = get_head(s1), h2 = get_head(s2);
+        if (h1 != h2)
+            return h1 < h2;
+        return get_num(s1) < get_num(s2);
     });
-    // convert
-    vector<string> answer;
-    for (part &p : vp)
-        answer.push_back(files[p.i]);
-    return answer;
+    return files;
 }

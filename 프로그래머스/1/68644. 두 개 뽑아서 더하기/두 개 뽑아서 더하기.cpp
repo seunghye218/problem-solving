@@ -2,7 +2,7 @@
 using namespace std;
 
 vector<int> solution(vector<int> numbers) {
-    static bool arr[200];
+    static bool arr[201];
     for (int i = 0, i_end = numbers.size() - 1; i < i_end; ++i)
         for (int j = i + 1; j < numbers.size(); ++j)
             arr[numbers[i] + numbers[j]] = true;

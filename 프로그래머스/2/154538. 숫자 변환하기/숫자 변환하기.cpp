@@ -17,8 +17,8 @@ int solution(int x, int y, int n) {
         dx d_x = q.front();
         q.pop();
         if (d_x.x == y)
-            answer = min(answer, d_x.d);
-        if (d_x.x >= y)
+            return d_x.d;
+        if (d_x.x > y)
             continue;
         if (arr[d_x.x])
             if (d_x.d < arr[d_x.x])

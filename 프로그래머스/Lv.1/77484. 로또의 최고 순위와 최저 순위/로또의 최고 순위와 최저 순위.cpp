@@ -14,6 +14,6 @@ vector<int> solution(vector<int> lottos, vector<int> win_nums) {
             if (nums[n])
                 ++wins;
     }
-    return {7 - doodles - wins - (doodles + wins ? 0 : 1),
-            7 - wins - (!wins ? 1 : 0)};
+    int rank[7] = {6, 6, 5, 4, 3, 2, 1};
+    return {rank[doodles + wins], rank[wins]};
 }

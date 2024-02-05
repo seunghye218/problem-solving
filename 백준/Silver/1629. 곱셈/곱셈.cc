@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-using ll = long long;
-
-ll recur(int &a, ll b, int &c) {
+long long recur(int &a, int b, int &c) {
   if (b == 1)
     return a % c;
-  ll v = recur(a, b >> 1, c);
+  long long v = recur(a, b >> 1, c);
   v = v * v % c;
   if (b & 1)
     return v * a % c;

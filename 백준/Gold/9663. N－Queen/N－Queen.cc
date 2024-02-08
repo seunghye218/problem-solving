@@ -2,22 +2,19 @@
 using namespace std;
 
 int N, cnt;
-int grid[15];
+bool col[15], diag1[30], diag2[30];
 
 void recur(int y) {
-  if (y == N) {
-    ++cnt;
-    return;
-  }
   for (int x = 0; x < N; ++x) {
-    bool safe = true;
-    for (int i = 0; i < y; ++i)
-      if (x == grid[i] || y - i == abs(grid[i] - x))
-        safe = false;
-    if (safe) {
-      grid[y] = x;
-      recur(y + 1);
+    if (col[x] || diag1[x + y] || diag2[x - y + N - 1])
+      continue;
+    if (y + 1 == N) {
+        ++cnt;
+        continue;
     }
+    col[x] = diag1[x + y] = diag2[x - y + N - 1] = true;
+    recur(y + 1);
+    col[x] = diag1[x + y] = diag2[x - y + N - 1] = false;
   }
 }
 

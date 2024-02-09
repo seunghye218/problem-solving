@@ -4,16 +4,14 @@ using namespace std;
 int N, S, cnt;
 int arr[20];
 
-void recur(int i, int sum, bool isEmptyOrDupSet) {
-  if (!isEmptyOrDupSet && sum == S) {
-    ++cnt;
-    isEmptyOrDupSet = 1;
+void recur(int i, int sum) {
+  if (i == N) {
+    if (sum == S)
+      ++cnt;
+    return;
   }
-  ++i;
-  if (i < N) {
-    recur(i, sum, isEmptyOrDupSet ? 1 : 0);
-    recur(i, sum + arr[i], 0);
-  }
+  recur(i + 1, sum);
+  recur(i + 1, sum + arr[i]);
 }
 
 int main() {
@@ -22,6 +20,8 @@ int main() {
   cin >> N >> S;
   for (int i = 0; i < N; ++i)
     cin >> arr[i];
-  recur(-1, 0, 1);
+  recur(0, 0);
+  if (S == 0)
+    --cnt;
   cout << cnt;
 }
